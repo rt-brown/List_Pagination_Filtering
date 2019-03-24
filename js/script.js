@@ -46,14 +46,15 @@ const showPage = (list, page) => {
  const lastIndex = (page * buttonsPerpage) - 1;
  for (let i = 0; i < studentRecords.length; i += 1){
    if (i >= firstIndex && i <= lastIndex){
-     console.log(studentRecords[i]);
      studentRecords[i].style.visibility = 'visible';
+   } else {
+     studentRecords[i].style.display = 'none';
    }
  }
 
 };
 
-showPage(studentRecords, 1);
+showPage(studentRecords, 6);
 
 
 /***
