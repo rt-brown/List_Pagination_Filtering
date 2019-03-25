@@ -21,7 +21,7 @@ FSJS project 2 - List Filter and Pagination
 const studentList = document.querySelector(".student-list");
 //identify children of studentList. this should equal all of the student records
 const studentRecords = studentList.children;
-const buttonsPerpage = 10;
+const itemsPerpage = 10;
 
 
 
@@ -42,8 +42,8 @@ const buttonsPerpage = 10;
 ***/
 
 const showPage = (list, page) => {
- const firstIndex = (page * buttonsPerpage) - buttonsPerpage;
- const lastIndex = (page * buttonsPerpage) - 1;
+ const firstIndex = (page * itemsPerpage) - itemsPerpage;
+ const lastIndex = (page * itemsPerpage) - 1;
  for (let i = 0; i < studentRecords.length; i += 1){
    if (i >= firstIndex && i <= lastIndex){
      studentRecords[i].style.visibility = 'visible';
@@ -62,7 +62,18 @@ showPage(studentRecords, 6);
    functionality to the pagination buttons.
 ***/
 
+const appendPageLinks = (list) =>{
+  const numberOfpages = studentList.childElementCount/itemsPerpage;
+  const pageDiv = document.querySelector('.page');
+  const buttonDiv = document.createElement('DIV');
+  const links = document.createElement('UL');
+  buttonDiv.className = 'pagination';
+  pageDiv.appendChild(buttonDiv);
+  buttonDiv.appendChild(links);
 
+}
+
+appendPageLinks(studentList);
 
 
 
