@@ -18,6 +18,7 @@ FSJS project 2 - List Filter and Pagination
 ***/
 
 //identify parent of <li>
+
 const studentList = document.querySelector(".student-list");
 //identify children of studentList. this should equal all of the student records
 const studentRecords = studentList.children;
@@ -54,7 +55,7 @@ const showPage = (list, page) => {
  }
 
 };
-
+showPage(studentList, 1);
 //showPage(studentRecords, 6);
 
 
@@ -68,19 +69,22 @@ const appendPageLinks = (list) => {
   const pageDiv = document.querySelector('.page');
   const buttonDiv = document.createElement('DIV');
   const links = document.createElement('UL');
-
-
   buttonDiv.className = 'pagination';
   pageDiv.appendChild(buttonDiv);
   buttonDiv.appendChild(links);
+
   for (let i = 1; i <= numberOfpages; i += 1){
     const buttonLi = document.createElement('LI');
     const buttonAtag = document.createElement('A');
+    const parentElement =
     buttonLi.appendChild(buttonAtag);
     buttonAtag.textContent = i;
     links.appendChild(buttonLi);
   }
-  links.addEventListener('click', (e) => {
+  
+  const li = document.querySelector('A').parentElement;
+  const ul = li.parentElement;
+  ul.addEventListener('click', (e) => {
     let page = e.target.textContent;
     showPage(studentList, page);
   } );
