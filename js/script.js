@@ -26,6 +26,7 @@ const itemsPerpage = 10;
 
 
 
+
 /***
    Create the `showPage` function to hide all of the items in the
    list except for the ten you want to show.
@@ -46,7 +47,7 @@ const showPage = (list, page) => {
  const lastIndex = (page * itemsPerpage) - 1;
  for (let i = 0; i < studentRecords.length; i += 1){
    if (i >= firstIndex && i <= lastIndex){
-     studentRecords[i].style.visibility = 'visible';
+     studentRecords[i].style.display = 'inherit';
    } else {
      studentRecords[i].style.display = 'none';
    }
@@ -54,7 +55,7 @@ const showPage = (list, page) => {
 
 };
 
-showPage(studentRecords, 6);
+//showPage(studentRecords, 6);
 
 
 /***
@@ -62,14 +63,27 @@ showPage(studentRecords, 6);
    functionality to the pagination buttons.
 ***/
 
-const appendPageLinks = (list) =>{
-  const numberOfpages = studentList.childElementCount/itemsPerpage;
+const appendPageLinks = (list) => {
+  const numberOfpages = Math.ceil(studentList.childElementCount/itemsPerpage);
   const pageDiv = document.querySelector('.page');
   const buttonDiv = document.createElement('DIV');
   const links = document.createElement('UL');
+
+
   buttonDiv.className = 'pagination';
   pageDiv.appendChild(buttonDiv);
   buttonDiv.appendChild(links);
+  for (let i = 1; i <= numberOfpages; i += 1){
+    const buttonLi = document.createElement('LI');
+    const buttonAtag = document.createElement('A');
+    buttonLi.appendChild(buttonAtag);
+    buttonAtag.textContent = i;
+    links.appendChild(buttonLi);
+  }
+  links.addEventListener('click', (e) => {
+    let page = e.target.textContent;
+    showPage(studentList, page);
+  } );
 
 }
 
