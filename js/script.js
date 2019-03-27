@@ -81,14 +81,15 @@ const appendPageLinks = (list) => {
     buttonAtag.textContent = i;
     links.appendChild(buttonLi);
   }
-  
-  const li = document.querySelector('A').parentElement;
-  const ul = li.parentElement;
-  ul.addEventListener('click', (e) => {
+
+  links.addEventListener('click', (e) => {
     let page = e.target.textContent;
     showPage(studentList, page);
   } );
 
+  for(let i = 1; i<= numberOfpages; i+=1){
+
+  }
 }
 
 appendPageLinks(studentList);
