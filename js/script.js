@@ -87,10 +87,22 @@ const appendPageLinks = (list) => {
     showPage(studentList, page);
   } );
 
-  for(let i = 1; i<= numberOfpages; i+=1){
+  const aTags = document.getElementsByTagName('A')
 
-  }
-}
+  for (let i = 0; i < aTags.length; i++){
+    aTags[i].className = 'inactive';
+      }
+
+  document.addEventListener('click', (event) =>{
+    if(event.target.tagName === 'A'){
+      event.target.className = 'active';
+    }
+  })
+
+
+};
+
+
 
 appendPageLinks(studentList);
 
