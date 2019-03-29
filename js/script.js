@@ -56,9 +56,9 @@ const appendPageLinks = (list) => {
       let page = event.target.textContent;
       showPage(studentList, page);
       for (let i = 0; i < aTags.length; i++){
-        aTags[i].className = 'inactive';
+        aTags[i].classList.remove('active');
       }
-      event.target.className = 'active'
+      event.target.classList.add('active')
     })
   }
 };
